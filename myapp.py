@@ -20,9 +20,10 @@ path = os.path.dirname(__file__)
 # laoding the model and all the variables
 emotions=["angry", "happy", "sad", "neutral"]
 fishface = cv2.face.FisherFaceRecognizer_create()
+fishface.read("model.xml")
 font = cv2.FONT_HERSHEY_SIMPLEX
 facedict={}
-facecascade=cv2.CascadeClassifier("WD_INNOVATIVE/haarcascade_frontalface_default.xml")
+facecascade=cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 if "run" not in st.session_state:
 	st.session_state["run"] = "true"
@@ -64,14 +65,13 @@ def identify_emotions():
   return output;
 def getEmotion(frame):
 	frm = frame.to_ndarray(format="bgr24")
-		frm = cv2.flip(frm, 1)
+	frm = cv2.flip(frm, 1)
 	count=0
 	while True:
 	count=count+1
 	detect_face(frm)
 	if count==10:
-	    fishface.read("model.xml")
-	    return identify_emotions()
+	    x = identify_emotions()
 	    break
 webrtc_streamer(key="key", desired_playing_state=True,
 				video_processor_factory=getEmotion,
