@@ -63,7 +63,7 @@ def identify_emotions():
   print("You seem to be %s" %output) 
   facedict.clear()
   return output;
-def getEmotion(frame: av.VideoFrame) -> av.VideoFrame:
+def getEmotion(frame: av.VideoFrame):
 	frm = frame.to_ndarray(format="bgr24")
 	frm = cv2.flip(frm, 1)
 	count=0
