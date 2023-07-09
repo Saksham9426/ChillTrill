@@ -24,7 +24,10 @@ try:
 	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except:
 	st.write("No trained model found... --update will create one.")
-
+try:
+	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+except:
+	st.write("classifier not loaded")
 class VideoTransformer(VideoTransformerBase):
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
