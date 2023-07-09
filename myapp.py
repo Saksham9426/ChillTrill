@@ -66,9 +66,8 @@ def identify_emotions():
 class VideoProcessor:
 	def recv(self, frame):
 		frm = frame.to_ndarray(format="bgr24")
-		clahe=cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
-		frm=clahe.apply(frm)
-		faces = cascade.detectMultiScale(cv2.cvtColor(frm, cv2.COLOR_BGR2GRAY), 1.1, 3)
+		gray=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+		faces = cascade.detectMultiScale(gray, 1.1, 3)
 
 		for x,y,w,h in faces:
 			cv2.rectangle(frm, (x,y), (x+w, y+h), (0,255,0), 3)
