@@ -69,7 +69,7 @@ class VideoProcessor:
 		
 		#image gray
 		img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-		faces=facecascade.detectMultiScale(clahe_image, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
+		faces=cascade.detectMultiScale(clahe_image, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
 		for (x, y, w, h) in faces:
 			faceslice=clahe_image[y:y+h, x:x+w]
 			faceslice=cv2.resize(img_gray, (350, 350))
