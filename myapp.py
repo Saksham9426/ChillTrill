@@ -31,6 +31,7 @@ except:
 class VideoTransformer(VideoTransformerBase):
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
+		img = cv2.flip(img,1)
 		img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		face=facecascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
 		for (x, y, w, h) in faces:
