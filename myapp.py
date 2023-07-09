@@ -70,7 +70,9 @@ class VideoProcessor:
 		cv2.imwrite('test.jpg', frm)
 		cv2.imwrite("main%s.jpg" %count, frm)
 		gray=cv2.imread('test.jpg',0)
-		return av.VideoFrame.from_ndarray(gray, format="bgr24")
+		clahe=cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+		clahe_image=clahe.apply(gray)
+		return av.VideoFrame.from_ndarray(clahe_image, format="bgr24")
 		count=0
 		'''while True:
 			count=count+1
