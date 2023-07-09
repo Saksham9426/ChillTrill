@@ -63,19 +63,20 @@ def identify_emotions():
   print("You seem to be %s" %output) 
   facedict.clear()
   return output;
-def getEmotion():
-	frm = frame.to_ndarray(format="bgr24")
-	frm = cv2.flip(frm, 1)
-	count=0
-	while True:
-		count=count+1
-		detect_face(frm)
-	if count==10:
-		emo = identify_emotions()
-		cv2.putText(frm, pred, (50,50),cv2.FONT_ITALIC, 1, (255,0,0),2)
-		return av.VideoFrame.from_ndarray(frm, format="bgr24")
+class VideoProcessor:
+	def recv(self,frame):
+		frm = frame.to_ndarray(format="bgr24")
+		frm = cv2.flip(frm, 1)
+		count=0
+		while True:
+			count=count+1
+			detect_face(frm)
+		if count==10:
+			emo = identify_emotions()
+			cv2.putText(frm, pred, (50,50),cv2.FONT_ITALIC, 1, (255,0,0),2)
+			return av.VideoFrame.from_ndarray(frm, format="bgr24")
 webrtc_streamer(key="key", desired_playing_state=True,
-				video_processor_factory=getEmotion,
+				video_processor_factory=VideoProcessor,
 				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
       "iceServers": token.ice_servers
   })
