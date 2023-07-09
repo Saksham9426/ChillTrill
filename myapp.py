@@ -15,7 +15,6 @@ account_sid = config.TWILIO_ACCOUNT_SID
 auth_token = config.TWILIO_AUTH_TOKEN
 client = Client(account_sid, auth_token)
 token = client.tokens.create()
-path = os.path.dirname(__file__)
 
 # laoding the model and all the variables
 emotions=["angry", "happy", "sad", "neutral"]
