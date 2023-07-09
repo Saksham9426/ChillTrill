@@ -31,7 +31,6 @@ try:
 	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except:
 	st.write("classifier not loaded")
-st.write(fish)
 class VideoTransformer(VideoTransformerBase):
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
