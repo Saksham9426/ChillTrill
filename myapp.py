@@ -36,8 +36,7 @@ class VideoProcessor():
 		img = frame.to_ndarray(format="bgr24")
 		img = cv2.flip(img,1)
 		img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-		faces=facecascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
-		print(faces)
+		faces = facecascade.detectMultiScale(image=img_gray, scaleFactor=1.3, minNeighbors=5)
 		for (x, y, w, h) in faces:
 			cv2.rectangle(img=img, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
 			roi_gray = img_gray[y:y + h, x:x + w]
