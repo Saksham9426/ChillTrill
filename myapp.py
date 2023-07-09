@@ -1,6 +1,6 @@
 # importing libraries
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer,RTCConfiguration,VideoTransformerBase
+from streamlit_webrtc import webrtc_streamer,RTCConfiguration
 import av,cv2,os
 import numpy as np
 import random,time,base64
@@ -31,7 +31,7 @@ try:
 	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except:
 	st.write("classifier not loaded")
-class VideoTransformer(VideoTransformerBase):
+class VideoProcessor():
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
 		img = cv2.flip(img,1)
@@ -51,7 +51,7 @@ class VideoTransformer(VideoTransformerBase):
 		return img
 
 webrtc_streamer(key="key", desired_playing_state=True,
-				video_transformer_factory=VideoTransformer,
+				video_processor_factory=VideoProcessor,
 				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
       "iceServers": token.ice_servers
   })
