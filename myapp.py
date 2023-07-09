@@ -36,9 +36,9 @@ class VideoTransformer(VideoTransformerBase):
             roi_gray = img_gray[y:y + h, x:x + w]
             roi_gray = cv2.resize(roi_gray, (350,350))
             if np.sum([roi_gray]) != 0:
-				pred, conf=fishface.predict(roi_gray)
-				finalout = emotion[pred]
-				output = str(finalout)
+		    pred, conf=fishface.predict(roi_gray)
+		    finalout = emotion[pred]
+		    output = str(finalout)
 			label_position = (x, y)
 			cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
