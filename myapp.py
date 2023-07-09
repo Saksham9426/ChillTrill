@@ -1,6 +1,6 @@
 # importing libraries
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer,RTCConfiguration
+from streamlit_webrtc import webrtc_streamer,RTCConfiguration,VideoTransformerBase
 import av,cv2 
 import numpy as np
 import random,time,base64
@@ -60,7 +60,7 @@ class VideoTransformer(VideoTransformerBase):
         return img
 
 webrtc_streamer(key="key", desired_playing_state=True,
-				video_processor_factory=VideoProcessor,
+				video_transformer_factory=VideoTransformer,
 				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
       "iceServers": token.ice_servers
   })
