@@ -77,8 +77,8 @@ class VideoProcessor:
 				pred, conf=fishface.predict(faceslice)
 				finalout = emotion[pred]
 				output = str(finalout)
-			label_position = (x, y)
-			cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+				st.write(output)
+			cv2.putText(img, (50,50), label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 		
 		return img
 
