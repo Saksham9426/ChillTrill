@@ -1,7 +1,7 @@
 # importing libraries
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer,RTCConfiguration,VideoTransformerBase
-import av,cv2 
+import av,cv2,os
 import numpy as np
 import random,time,base64
 from twilio.rest import Client
@@ -9,6 +9,10 @@ import config
 from tensorflow import keras
 from keras.models import model_from_json
 from keras.preprocessing.image import img_to_array
+
+path = os.path.dirname(__file__)
+
+
 
 #creating Twilio account for the video access
 account_sid = config.TWILIO_ACCOUNT_SID
@@ -20,20 +24,20 @@ token = client.tokens.create()
 fishface = cv2.face.FisherFaceRecognizer_create()
 font = cv2.FONT_HERSHEY_SIMPLEX
 try:
-	fishface.read('model.xml')
+	fishface.read(os.path.join(path,"model.xml"))
 except:
 	st.write("No trained model found... --update will create one.")
 try:
 	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except:
 	st.write("classifier not loaded")
-st.write(type(fishface))
+st.write(fish)
 class VideoTransformer(VideoTransformerBase):
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
 		img = cv2.flip(img,1)
 		img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-		face=facecascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
+		faces=facecascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
 		for (x, y, w, h) in faces:
 			cv2.rectangle(img=img, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
 			roi_gray = img_gray[y:y + h, x:x + w]
