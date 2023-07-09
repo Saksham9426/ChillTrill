@@ -64,15 +64,23 @@ def identify_emotions():
   facedict.clear()
   return output;
 class VideoProcessor:
-	def recv(self, frame):
-		frm = frame.to_ndarray(format="bgr24")
-		gray=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-		faces = cascade.detectMultiScale(gray, 1.1, 3)
+	def transform(self, frame):
+        img = frame.to_ndarray(format="bgr24")
 
-		for x,y,w,h in faces:
-			cv2.rectangle(frm, (x,y), (x+w, y+h), (0,255,0), 3)
+        #image gray
+        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces=facecascade.detectMultiScale(clahe_image, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
+        for (x, y, w, h) in faces:
+            faceslice=clahe_image[y:y+h, x:x+w]
+            faceslice=cv2.resize(img_gray, (350, 350))
+            if np.sum([faceslice]) != 0:
+		pred, conf=fishface.predict(faceslice)
+                finalout = emotion[pred]
+                output = str(finalout)
+            label_position = (x, y)
+            cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-		return av.VideoFrame.from_ndarray(frm, format='bgr24')
+        return img
 
 webrtc_streamer(key="key", desired_playing_state=True,
 				video_processor_factory=VideoProcessor,
