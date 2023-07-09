@@ -67,8 +67,8 @@ class VideoProcessor:
 	def recv(self,frame):
 		frm = frame.to_ndarray(format="bgr24")
 		frm = cv2.flip(frm, 1)
-		cv2.imwrite('test.jpg', frame)
-		cv2.imwrite("main%s.jpg" %count, frame)
+		cv2.imwrite('test.jpg', frm)
+		cv2.imwrite("main%s.jpg" %count, frm)
 		gray=cv2.imread('test.jpg',0)
 		return av.VideoFrame.from_ndarray(gray, format="bgr24")
 		count=0
