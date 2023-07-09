@@ -1,6 +1,6 @@
 # importing libraries
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer,RTCConfiguration
 import av
 import cv2 
 import numpy as np
@@ -64,16 +64,21 @@ def identify_emotions():
   facedict.clear()
   return output;
 class VideoProcessor:
-	def recv(self,frame):
+	def recv(self, frame):
 		frm = frame.to_ndarray(format="bgr24")
-		frm = cv2.flip(frm, 1)
-		cv2.imwrite('test.jpg', frm)
-		cv2.imwrite("main%s.jpg" %count, frm)
-		gray=cv2.imread('test.jpg',0)
-		clahe=cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
-		clahe_image=clahe.apply(gray)
-		return av.VideoFrame.from_ndarray(clahe_image, format="bgr24")
-		count=0
+
+		faces = cascade.detectMultiScale(cv2.cvtColor(frm, cv2.COLOR_BGR2GRAY), 1.1, 3)
+
+		for x,y,w,h in faces:
+			cv2.rectangle(frm, (x,y), (x+w, y+h), (0,255,0), 3)
+
+		return av.VideoFrame.from_ndarray(frm, format='bgr24')
+
+webrtc_streamer(key="key", video_processor_factory=VideoProcessor,
+				rtc_configuration=RTCConfiguration(
+					{"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+					)
+	)
 		'''while True:
 			count=count+1
 			detect_face(frm)
@@ -81,8 +86,3 @@ class VideoProcessor:
 				emo = identify_emotions()
 				cv2.putText(frm, pred, (50,50),cv2.FONT_ITALIC, 1, (255,0,0),2)
 				return av.VideoFrame.from_ndarray(frm, format="bgr24")'''
-webrtc_streamer(key="key", desired_playing_state=True,
-				video_processor_factory=VideoProcessor,
-				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
-      "iceServers": token.ice_servers
-  })
