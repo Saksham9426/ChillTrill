@@ -67,14 +67,18 @@ class VideoProcessor:
 	def recv(self,frame):
 		frm = frame.to_ndarray(format="bgr24")
 		frm = cv2.flip(frm, 1)
+		cv2.imwrite('test.jpg', frame)
+		cv2.imwrite("main%s.jpg" %count, frame)
+		gray=cv2.imread('test.jpg',0)
+		return av.VideoFrame.from_ndarray(gray, format="bgr24")
 		count=0
-		while True:
+		'''while True:
 			count=count+1
 			detect_face(frm)
 			if count==10:
 				emo = identify_emotions()
 				cv2.putText(frm, pred, (50,50),cv2.FONT_ITALIC, 1, (255,0,0),2)
-				return av.VideoFrame.from_ndarray(frm, format="bgr24")
+				return av.VideoFrame.from_ndarray(frm, format="bgr24")'''
 webrtc_streamer(key="key", desired_playing_state=True,
 				video_processor_factory=VideoProcessor,
 				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
