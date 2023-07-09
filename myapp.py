@@ -17,42 +17,27 @@ client = Client(account_sid, auth_token)
 token = client.tokens.create()
 
 # load model
-emotion_dict = {0:'angry', 1 :'happy', 2: 'neutral', 3:'sad', 4: 'surprise'}
-# load json and create model
-json_file = open('emotion_model1.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-classifier = model_from_json(loaded_model_json)
-
-# load weights into new model
-classifier.load_weights("emotion_model1.h5")
-
-#load face
+fishface = cv2.face.FisherFaceRecognizer_create()
+font = cv2.FONT_HERSHEY_SIMPLEX
 try:
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-except Exception:
-    st.write("Error loading cascade classifiers")
+    fishface.load('model.xml')
+	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+except:
+    st.write("No trained model found... --update will create one.")
 
 class VideoTransformer(VideoTransformerBase):
     def transform(self, frame):
         img = frame.to_ndarray(format="bgr24")
-
         #image gray
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(
-            image=img_gray, scaleFactor=1.3, minNeighbors=5)
+        face=facecascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=15, minSize=(10, 10), flags=cv2.CASCADE_SCALE_IMAGE)
         for (x, y, w, h) in faces:
-            cv2.rectangle(img=img, pt1=(x, y), pt2=(
-                x + w, y + h), color=(255, 0, 0), thickness=2)
+            cv2.rectangle(img=img, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
             roi_gray = img_gray[y:y + h, x:x + w]
-            roi_gray = cv2.resize(roi_gray, (48, 48), interpolation=cv2.INTER_AREA)
+            roi_gray = cv2.resize(roi_gray, (350,350))
             if np.sum([roi_gray]) != 0:
-                roi = roi_gray.astype('float') / 255.0
-                roi = img_to_array(roi)
-                roi = np.expand_dims(roi, axis=0)
-                prediction = classifier.predict(roi)[0]
-                maxindex = int(np.argmax(prediction))
-                finalout = emotion_dict[maxindex]
+				pred, conf=fishface.predict(roi_gray)
+                finalout = emotion[pred]
                 output = str(finalout)
             label_position = (x, y)
             cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
