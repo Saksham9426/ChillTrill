@@ -20,7 +20,7 @@ token = client.tokens.create()
 fishface = cv2.face.FisherFaceRecognizer_create()
 font = cv2.FONT_HERSHEY_SIMPLEX
 try:
-    fishface.load('model.xml')
+	fishface.load('model.xml')
 	facecascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except:
     st.write("No trained model found... --update will create one.")
