@@ -24,6 +24,7 @@ fishface.read("model.xml")
 font = cv2.FONT_HERSHEY_SIMPLEX
 facedict={}
 facecascade=cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+emo=''
 
 if "run" not in st.session_state:
 	st.session_state["run"] = "true"
@@ -71,7 +72,8 @@ def getEmotion(frame):
 		count=count+1
 		detect_face(frm)
 	if count==10:
-		x = identify_emotions()
+		emo = identify_emotions()
+		cv2.putText(frm, pred, (50,50),cv2.FONT_ITALIC, 1, (255,0,0),2)
 		return av.VideoFrame.from_ndarray(frm, format="bgr24")
 webrtc_streamer(key="key", desired_playing_state=True,
 				video_processor_factory=getEmotion,
