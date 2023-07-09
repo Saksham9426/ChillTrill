@@ -74,8 +74,8 @@ class VideoProcessor:
 
 		return av.VideoFrame.from_ndarray(frm, format='bgr24')
 
-webrtc_streamer(key="key", video_processor_factory=VideoProcessor,
-				rtc_configuration=RTCConfiguration(
-					{"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-					)
-	)
+wwebrtc_streamer(key="key", desired_playing_state=True,
+				video_processor_factory=EmotionProcessor,
+				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
+      "iceServers": token.ice_servers
+  })
