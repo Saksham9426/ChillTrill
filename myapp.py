@@ -6,9 +6,6 @@ import numpy as np
 import random,time,base64
 from twilio.rest import Client
 import config
-from tensorflow import keras
-from keras.models import model_from_json
-from keras.preprocessing.image import img_to_array
 
 path = os.path.dirname(__file__)
 
