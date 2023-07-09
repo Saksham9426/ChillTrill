@@ -3,3 +3,5 @@ opencv-python
 av
 streamlit-webrtc
 twilio
+tensorflow
+keras
