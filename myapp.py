@@ -19,6 +19,8 @@ angry = ['m1.mp3','m2.mp3','m3.mp3']
 sad = ['m4.mp3','m5.mp3','m6.mp3']
 happy = ['m7.mp3','m8.mp3','m9.mp3']
 neutral = ['m10.mp3','m11.mp3','m12.mp3']
+fear = ['m1.mp3','m5.mp3','m8.mp3']
+surprise = ['m9.mp3','m3.mp3','m12.mp3']
 
 #creating Twilio account for the video access
 account_sid = config.TWILIO_ACCOUNT_SID
@@ -110,5 +112,9 @@ while True:
 		auto(random.choice(neutral))
 	if my =='happy':
 		auto('m13.mp3')
+	if my == 'Fear':
+		auto(random.choice(fear))
+	if my == 'Surprise':
+		auto(random.choice(surprise))
 	time.sleep(120)
 
