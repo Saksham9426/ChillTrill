@@ -106,5 +106,5 @@ while True:
 		auto(random.choice(sad))
 	if my == 'Neutral':
 		auto(random.choice(neutral))
-	time.sleep(20)
+	time.sleep(120)
 
