@@ -98,12 +98,12 @@ while True:
 	my = max(set(final), key = final.count)
 	st.write('You seem',my)
 	if my =='Happy':
-		placeholder.auto(random.choice(happy))
+		auto(random.choice(happy))
 	if my == 'Angry':
-		placeholder.auto(random.choice(angry))
+		auto(random.choice(angry))
 	if my == 'Sad':
-		placeholder.auto(random.choice(sad))
+		auto(random.choice(sad))
 	if my == 'Neutral':
-		placeholder.auto(random.choice(neutral))
+		auto(random.choice(neutral))
 	time.sleep(20)
 
