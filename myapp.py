@@ -10,6 +10,10 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing.image import img_to_array
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration, VideoProcessorBase
 
+st.title('-----------')
+st.header('Description')
+st.markdown('fill in the details here')
+
 #creating lists of songs for different emotions
 angry = ['m1.mp3','m2.mp3','m3.mp3']
 sad = ['m4.mp3','m5.mp3','m6.mp3']
