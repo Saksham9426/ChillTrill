@@ -108,7 +108,7 @@ while True:
 		auto(random.choice(sad))
 	if my == 'Neutral':
 		auto(random.choice(neutral))
-	if my =='happy'):
+	if my =='happy':
 		auto('m13.mp3')
 	time.sleep(120)
 
