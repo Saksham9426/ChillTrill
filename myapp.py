@@ -1,6 +1,6 @@
 # importing libraries
 import streamlit as st
-import av,cv2,os
+import cv2
 from keras.models import load_model
 import numpy as np
 import random,time,base64
@@ -9,9 +9,12 @@ import config
 from tensorflow import keras
 from tensorflow.keras.preprocessing.image import img_to_array
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration, VideoProcessorBase
-path = os.path.dirname(__file__)
 
-
+#creating lists of songs for different emotions
+angry = ['m1.mp3','m2.mp3','m3.mp3']
+sad = ['m4.mp3','m5.mp3','m6.mp3']
+happy = ['m7.mp3','m8.mp3','m9.mp3']
+neutral = ['m10.mp3','m11.mp3','m12.mp3']
 
 #creating Twilio account for the video access
 account_sid = config.TWILIO_ACCOUNT_SID
@@ -55,6 +58,7 @@ class VideoTransformer(VideoTransformerBase):
                 maxindex = int(np.argmax(prediction))
                 finalout = emotion_labels[maxindex]
                 output = str(finalout)
+		np.save("emotion.npy", np.array([output]))
             label_position = (x, y-10)
             cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
@@ -81,14 +85,20 @@ def autoplay_audio(file_path: str):
             unsafe_allow_html=True,
         )
 placeholder = st.empty()
-x=0
-while x<4:
-	emo = np.load("emotion.npy")[0]
-	st.write(emo)
-	if emo =='happy':
-		placeholder.auto(l1[0])
-	else:
-		placeholder.auto(l1[1])
+while True:
+	final = []
+	for i in range(0,20):
+		emo = np.load("emotion.npy")[0]
+		final.append(emo)
+	my = return max(set(final), key = final.count)
+	st.write(my)
+	if my =='Happy':
+		placeholder.auto(random.choice(happy))
+	if my == 'Angry':
+		placeholder.auto(random.choice(angry))
+	if my == 'Sad':
+		placeholder.auto(random.choice(sad))
+	if my == 'Neutral':
+		placeholder.auto(random.choice(neutral))
 	time.sleep(20)
-	x=x+1
 
