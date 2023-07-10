@@ -75,6 +75,7 @@ webrtc_streamer(key="key", desired_playing_state=True,
       "iceServers": token.ice_servers
   })
 st.write("# Auto-playing Audio!")
+
 def auto(file_path: str):
 	placeholder.empty()
 	with open(file_path, "rb") as f:
@@ -90,15 +91,13 @@ def auto(file_path: str):
             unsafe_allow_html=True,
         )
 placeholder = st.empty()
-p1 = st.empty()
 while True:
 	final = []
 	for i in range(0,20):
 		emo = np.load("emotion.npy")[0]
 		final.append(emo)
-	p1.empty()
 	my = max(set(final), key = final.count)
-	p1.write('You seem',my)
+	st.write('You seem',my
 	if my =='Happy':
 		auto(random.choice(happy))
 	if my == 'Angry':
