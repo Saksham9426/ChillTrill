@@ -91,13 +91,15 @@ def auto(file_path: str):
             unsafe_allow_html=True,
         )
 placeholder = st.empty()
+t = st.empty()
 while True:
 	final = []
 	for i in range(0,20):
 		emo = np.load("emotion.npy")[0]
 		final.append(emo)
+	t.empty()
 	my = max(set(final), key = final.count)
-	st.write('You seem',my)
+	t.write('You seem'+my)
 	if my =='Happy':
 		auto(random.choice(happy))
 	if my == 'Angry':
