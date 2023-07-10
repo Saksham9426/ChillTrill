@@ -95,7 +95,7 @@ while True:
 		emo = np.load("emotion.npy")[0]
 		final.append(emo)
 	my = return max(set(final), key = final.count)
-	st.write(my)
+	st.write('You seem',my)
 	if my =='Happy':
 		placeholder.auto(random.choice(happy))
 	if my == 'Angry':
