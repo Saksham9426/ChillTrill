@@ -76,15 +76,16 @@ webrtc_streamer(key="key", desired_playing_state=True,
   })
 st.write("# Auto-playing Audio!")
 def auto(file_path: str):
-    with open(file_path, "rb") as f:
-        data = f.read()
-        b64 = base64.b64encode(data).decode()
-        md = f"""
-            <audio controls autoplay="true">
-            <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
-            </audio>
-            """
-        st.markdown(
+	placeholder.empty()
+	with open(file_path, "rb") as f:
+		data = f.read()
+		b64 = base64.b64encode(data).decode()
+		md = f"""
+		    <audio controls autoplay="true">
+		    <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+		    </audio>
+		    """
+	placeholder.markdown(
             md,
             unsafe_allow_html=True,
         )
