@@ -75,7 +75,7 @@ webrtc_streamer(key="key", desired_playing_state=True,
       "iceServers": token.ice_servers
   })
 st.write("# Auto-playing Audio!")
-def autoplay_audio(file_path: str):
+def auto(file_path: str):
     with open(file_path, "rb") as f:
         data = f.read()
         b64 = base64.b64encode(data).decode()
