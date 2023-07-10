@@ -66,3 +66,29 @@ webrtc_streamer(key="key", desired_playing_state=True,
 				media_stream_constraints={"video": True, "audio": False},rtc_configuration={
       "iceServers": token.ice_servers
   })
+st.write("# Auto-playing Audio!")
+def autoplay_audio(file_path: str):
+    with open(file_path, "rb") as f:
+        data = f.read()
+        b64 = base64.b64encode(data).decode()
+        md = f"""
+            <audio controls autoplay="true">
+            <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+            </audio>
+            """
+        st.markdown(
+            md,
+            unsafe_allow_html=True,
+        )
+placeholder = st.empty()
+x=0
+while x<4:
+	emo = np.load("emotion.npy")[0]
+	st.write(emo)
+	if emo =='happy':
+		placeholder.auto(l1[0])
+	else:
+		placeholder.auto(l1[1])
+	time.sleep(20)
+	x=x+1
+
