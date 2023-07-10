@@ -62,7 +62,7 @@ class VideoTransformer(VideoTransformerBase):
                 maxindex = int(np.argmax(prediction))
                 finalout = emotion_labels[maxindex]
                 output = str(finalout)
-				np.save("emotion.npy", np.array([output]))
+		    np.save("emotion.npy", np.array([output]))
             label_position = (x, y-10)
             cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
