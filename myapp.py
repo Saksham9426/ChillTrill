@@ -116,5 +116,5 @@ while True:
 		auto(random.choice(fear))
 	if my == 'Surprise':
 		auto(random.choice(surprise))
-	time.sleep(120)
+	time.sleep(90)
 
