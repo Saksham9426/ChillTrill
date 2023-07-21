@@ -98,7 +98,10 @@ t = st.empty()
 while True:
 	final = []
 	for i in range(0,20):
-		emo = np.load("emotion.npy")[0]
+		try:
+			emo = np.load("emotion.npy")[0]
+		except Exception:
+			emo = 'happy'
 		final.append(emo)
 	t.empty()
 	my = max(set(final), key = final.count)
