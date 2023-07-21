@@ -101,7 +101,7 @@ while True:
 		final.append(emo)
 	t.empty()
 	my = max(set(final), key = final.count)
-	t.write('You seem'+my)
+	t.write('You seem '+my)
 	if my =='Happy':
 		auto(random.choice(happy))
 	if my == 'Angry':
@@ -111,7 +111,7 @@ while True:
 	if my == 'Neutral':
 		auto(random.choice(neutral))
 	if my =='happy':
-		auto('m13.mp3')
+		auto('Chopin_ Etude in E Major Op.10 No.3.mp3')
 	if my == 'Fear':
 		auto(random.choice(fear))
 	if my == 'Surprise':
