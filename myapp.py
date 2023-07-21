@@ -10,9 +10,10 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing.image import img_to_array
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration, VideoProcessorBase
 
-st.title('-----------')
-st.header('Description')
-st.markdown('fill in the details here')
+st.title('ChillTrill')
+st.header('An advanced webapp that utilizes deep learning and AI-ML technology to detect micro-changes in your facial expressions, allowing it to assess if the currently played music is inducing a calming effect for you. It can detect different emotions for example happy, sad, angry, calm, neutral; based on which, it dynamically consistently changes the music selection according to the data it collects of songs which seem to calm your and help you focus on your tasks.')
+st.markdown('While working for long hours or even short durations on one's laptops/computers/phones, the webcam on your device can be used to take in your facial input in real-time. We dynamically curate and play songs to help users focus taking into account what seems to be working and what doesn't; thus creating the perfect environment for one's needs. More specifically, it assists people with attention deficit disorders (ADD/ADHD) to focus and concentrate on important tasks consistently when it may seem tough to do so. 
+Your privacy is of the utmost importance, therefore none of the video inputs taken in real-time are stored or sent anywhere, it's only used to determine your current sentiment analysis to better curate music playlists automatically for our users and help them focus and aid in productivity with scientifically tested and proven data.')
 
 #creating lists of songs for different emotions
 angry = ['m1.mp3','m2.mp3','m3.mp3','All These Things That Ive Done.mp3','All You Ever Wanted.mp3','Arizona.mp3','Beautiful War.mp3','Chopin_ Etude in E Major Op.10 No.3.mp3','Chopin_ Nocturne in E flat Major Op.9 No.2.mp3','Cold Desert.mp3','Cruel World.mp3']
