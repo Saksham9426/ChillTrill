@@ -16,10 +16,10 @@ st.markdown('fill in the details here')
 
 #creating lists of songs for different emotions
 angry = ['m1.mp3','m2.mp3','m3.mp3','All These Things That Ive Done.mp3','All You Ever Wanted.mp3','Arizona.mp3','Beautiful War.mp3','Chopin_ Etude in E Major Op.10 No.3.mp3','Chopin_ Nocturne in E flat Major Op.9 No.2.mp3','Cold Desert.mp3','Cruel World.mp3']
-sad = ['m4.mp3','m5.mp3','m6.mp3','Grains of Sand.mp3','Grapevine Fires.mp3','Green Light (feat. André 3000).mp3','Hard Sun.mp3','Hey Brother.mp3','Honky Cat.mp3','I Smile.mp3','If No One Will Listen.mp3','Inside Out.mp3','Chopin_ Prelude 'Raindrop' in D flat Major Op.28 No.15.mp3']
+sad = ['m4.mp3','m5.mp3','m6.mp3','Grains of Sand.mp3','Grapevine Fires.mp3','Green Light (feat. André 3000).mp3','Hard Sun.mp3','Hey Brother.mp3','Honky Cat.mp3','I Smile.mp3','If No One Will Listen.mp3','Inside Out.mp3','Chopin_ Prelude Raindrop in D flat Major Op.28 No.15.mp3']
 happy = ['m7.mp3','m8.mp3','m9.mp3','Lost.mp3','m y . l i f e (with 21 Savage & Morray).mp3','My Girl.mp3','Never Give Up.mp3','Ragoo.mp3','Renegades Of Funk.mp3','Revelry.mp3','Seven Nation Army.mp3','Simple Man.mp3','Smells Like Teen Spirit.mp3','St Jude.mp3','Sugar.mp3']
 neutral = ['m10.mp3','m11.mp3','m12.mp3','Sunday Morning.mp3','Super Rich Kids.mp3','Teenage Dream.mp3','The Grand Optimist.mp3','The Lion Sleeps Tonight.mp3','Victory.mp3','Wake Me up When September Ends.mp3','Winning.mp3','Wish You Were Here.mp3','Within.mp3','Wonder Woman Theme.mp3']
-fear = ['m1.mp3','m5.mp3','m8.mp3','Don't Stop Believin'.mp3','Flaws and All.mp3','Free Bird.mp3']
+fear = ['m1.mp3','m5.mp3','m8.mp3','Dont Stop Believin.mp3','Flaws and All.mp3','Free Bird.mp3']
 surprise = ['m9.mp3','m3.mp3','m12.mp3','Intentional.mp3','Just Dance.mp3','Killing Strangers.mp3']
 
 #creating Twilio account for the video access
