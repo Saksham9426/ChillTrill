@@ -43,7 +43,7 @@ try:
 	face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 except Exception:
 	st.write("Error loading cascade classifiers")
-
+@st.experimental_singleton
 class VideoTransformer(VideoTransformerBase):
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
@@ -121,4 +121,5 @@ while True:
 	if my == 'Surprise':
 		auto(random.choice(surprise))
 	time.sleep(120)
+	st.experimental_singleton.clear()
 
