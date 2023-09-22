@@ -32,12 +32,14 @@ token = client.tokens.create()
 # Define the emotions.
 emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 
-# Load model.
-classifier =load_model('model_78.h5')
-
-# load weights into new model
-classifier.load_weights("model_weights_78.h5")
-
+@st.cache_resource
+def my_model():
+	# Load model.
+	cl =load_model('model_78.h5')
+	# load weights into new model
+	cl.load_weights("model_weights_78.h5")
+	return cl
+classifier = my_model()
 # Load face using OpenCV
 try:
 	face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
