@@ -45,7 +45,7 @@ try:
 	face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 except Exception:
 	st.write("Error loading cascade classifiers")
-@st.cache_resources
+@st.cache_resource
 class VideoTransformer(VideoTransformerBase):
 	def transform(self, frame):
 		img = frame.to_ndarray(format="bgr24")
